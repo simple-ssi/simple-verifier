@@ -11,6 +11,6 @@
   "license": "",
   "description": "",
   "dependencies": {
-    "@futureforg-ing/salutations": "latest"
+    "@simple-ssi/simple-verifier": "latest"
   }
 }

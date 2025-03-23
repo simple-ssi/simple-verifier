@@ -1,16 +1,7 @@
-import { hello, goodbye } from './salutation/salutation.js';
+import { verify } from './verify.js';
 
-export function sayHello(): string {
-  const message = `${hello}!`;
-  return message;
-}
-
-export function sayGoodbye(): string {
-  const message = `${goodbye}!`;
-  return message;
-}
+export { verify } from './verify.js';
 
 export default {
-  sayHello,
-  sayGoodbye,
+  verify,
 };

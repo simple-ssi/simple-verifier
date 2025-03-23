@@ -1,9 +1,7 @@
-const messages = require('@futureforg-ing/salutations');
+const Verifier = require('@simple-ssi/simple-verifier');
 
 console.log('\n[cjs]');
 
-console.log(
-  messages.sayHello() === 'hello!' && messages.sayGoodbye() === 'goodbye!'
-    ? 'pass'
-    : 'fail'
-);
+const verifyThis = 'a value to verify';
+
+console.log(Verifier.verify(verifyThis) ? 'pass' : 'fail');

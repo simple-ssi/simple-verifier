@@ -1,25 +1,23 @@
 {
-  "name": "@futureforg-ing/salutations",
-  "version": "0.0.0-dev.3",
-  "description": "An npm package template that says 'hello' and 'goodbye'",
-  "license": "UNLICENSED",
-  "type": "module",
-  "access": "public",
+  "name": "@simple-ssi/simple-verifier",
+  "version": "0.0.0-dev.0",
+  "description": "A simple verifier for SSI",
+  "keywords": [
+    "ssi",
+    "verifier",
+    "simple"
+  ],
+  "homepage": "https://github.com/simple-ssi/simple-verifier#readme",
+  "bugs": {
+    "url": "https://github.com/simple-ssi/simple-verifier/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "[FILL IN YOURS]"
+    "url": "git+https://github.com/simple-ssi/simple-verifier"
   },
-  "keywords": [
-    "template"
-  ],
-  "author": "[FILL IN YOURS]",
-  "bugs": {
-    "url": "https://FILL.IN.YOURS"
-  },
-  "homepage": "https://FILL.IN.YOURS",
-  "engines": {
-    "node": ">=18.0.0"
-  },
+  "license": "Apache-2.0",
+  "author": "Jonathan Rayback",
+  "type": "module",
   "exports": {
     ".": {
       "import": {
@@ -32,28 +30,40 @@
       }
     }
   },
-  "types": "./dist/cjs/types/index.d.ts",
   "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/types/index.d.ts",
+  "typesVersions": {
+    "<=4.9": {
+      "*": [
+        "dist/cjs/types/*"
+      ]
+    },
+    ">=5.0": {
+      "*": [
+        "dist/esm/types/*"
+      ]
+    }
+  },
   "files": [
     "dist/**/*"
   ],
   "scripts": {
-    "clean": "del-cli ./dist",
     "build": "npm run clean && npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc -p ./configs/tsconfig.esm.json && npx echo-cli '{\"type\": \"module\"}' > dist/esm/package.json",
-    "build:cjs": "tsc -p ./configs/tsconfig.cjs.json && npx echo-cli '{\"type\": \"commonjs\"}' > dist/cjs/package.json",
-    "test": "jest",
-    "test:full": "npm run full-checker && npm run build && npm run compatibility-checker && npm run packageCheck",
-    "linter": "npx eslint src",
-    "formatter": "prettier --check .",
-    "formatter:fix": "prettier --write .",
-    "dependency-checker": "npx depcheck --ignores='@typescript-eslint/eslint-plugin, @typescript-eslint/parser, @types/jest, @types/node, jest-ci-spec-reporter, ts-jest'",
-    "compatibility-checker": "./build/test/package/checkPackage.sh",
+    "build:cjs": "tsc -p ./configs/tsconfig.cjs.json && npx echo-cli '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
+    "build:esm": "tsc -p ./configs/tsconfig.esm.json && npx echo-cli '{\"type\": \"module\"}' > ./dist/esm/package.json",
     "checker:full": "npm install && npm run formatter && npm run linter && npm run dependency-checker && npm test",
-    "packageCheck": "npm pack --dry-run",
+    "clean": "del-cli ./dist",
+    "compatibility-checker": "./build/test/package/checkPackage.sh",
+    "dependency-checker": "npx depcheck --ignores='@typescript-eslint/eslint-plugin, @typescript-eslint/parser, @types/jest, @types/node, jest-ci-spec-reporter, ts-jest'",
+    "formatter": "prettier --check . && npx sort-package-json --check",
+    "formatter:fix": "prettier --write . && npx sort-package-json",
+    "linter": "npx eslint src",
+    "package-checker": "npm pack --dry-run",
     "prepublishOnly": "npm run full-checker && npm test && npm run build && npm run compatibility-checker",
-    "publish:dev-old": "npm version prerelease --preid=dev && npm publish --access public --tag dev",
-    "publish:dev": "npm version prerelease --preid=dev && npm publish --access restricted --tag dev && npm dist-tag add $(node -p \"require('./package.json').name + '@' + require('./package.json').version\") latest"
+    "publish:dev": "npm version prerelease --preid=dev && npm publish --access public --tag dev && npm dist-tag add $(node -p \"require('./package.json').name + '@' + require('./package.json').version\") latest",
+    "test": "jest",
+    "test:full": "npm install && npm run checker:full && npm run build && npm run compatibility-checker && npm run package-checker"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
@@ -69,10 +79,15 @@
     "jest": "^29.7.0",
     "jest-ci-spec-reporter": "^1.0.4",
     "prettier": "^3.3.3",
+    "sort-package-json": "^3.0.0",
     "ts-jest": "^29.2.6",
     "typescript": "^5.2.2",
     "typescript-eslint": "^8.24.1"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "access": "public",
   "overrides": {
     "glob": "^9.0.0"
   }
