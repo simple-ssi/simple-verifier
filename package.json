@@ -60,7 +60,7 @@
     "formatter:fix": "prettier --write . && npx sort-package-json",
     "linter": "npx eslint src",
     "package-checker": "npm pack --dry-run",
-    "prepublishOnly": "npm run full-checker && npm test && npm run build && npm run compatibility-checker",
+    "prepublishOnly": "npm run checker:full && npm test && npm run build && npm run compatibility-checker",
     "publish:dev": "npm version prerelease --preid=dev && npm publish --access public --tag dev && npm dist-tag add $(node -p \"require('./package.json').name + '@' + require('./package.json').version\") latest",
     "test": "jest",
     "test:full": "npm install && npm run checker:full && npm run build && npm run compatibility-checker && npm run package-checker"
