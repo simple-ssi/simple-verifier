@@ -1,50 +1,31 @@
-# Template for NPM packages
+# simple-verifier
 
-## Derived from multiple examples. [This](https://snyk.io/blog/best-practices-create-modern-npm-package/) one and [this](https://evertpot.com/universal-commonjs-esm-typescript-packages/) one in particular...
+`simple-verifier` is a simple, limited verifier for SSI. It is currently under development. In its current state, it is of use to no one.
 
-## Instructions
+It does not support browsers.
 
-Initialize the repo (a starting `.gitignore` is provided):
+Stay tuned.
 
-```bash
-git init
-```
-
-Install the dependencies:
+## Usage
 
 ```bash
-npm install
+npm install @simple-ssi/simple-verifier
 ```
 
-Create a `.vscode` directory at the root of the project and paste the contents of `PROJECT-SETTINGS-PUT-IN-DOT-VSCODE-DIR.json` into a `settings.json` file.
-
-In VS Code consider enabling the following extensions in the workspace:
-
-- StandardJS
-- Jest
-- markdownlint
-- Markdown Preview GitHub Styling
-
-To run tests:
+then:
 
 ```bash
-npm test
+const verifier = require('@simple-ssi/simple-verifier')
 ```
 
-To run formatter (`ts-standard`):
+or
 
 ```bash
-npm run formatter
+import * as verifier from '@simple-ssi/simple-verifier'
 ```
 
-To build:
+## API
 
-```bash
-npm run build
-```
+The API has a single function. It takes a string and always returns `true`.
 
-To validate proper behavior as an npm package (see README in `/build/test/package`):
-
-```bash
-npm run packageChecker
-```
+- `verify('string-to-verify)`
