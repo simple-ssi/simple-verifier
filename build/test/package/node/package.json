@@ -5,9 +5,12 @@
   "scripts": {
     "node-test": "npm run linker && node ./esm/script.js && node ./cjs/script.js && npm run unlinker",
     "linker": "npx link \"$(npm prefix)/../../../../\"",
-    "unlinker": "npm unlink @futureforg-ing/salutations"
+    "unlinker": "npx link -u \"$(npm prefix)/../../../../\""
   },
   "author": "",
   "license": "",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@futureforg-ing/salutations": "latest"
+  }
 }
